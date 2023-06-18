@@ -6,26 +6,25 @@ def calculate_subnet_info(ip_subnet):
     ip_binary = ''.join(format(int(part), '08b') for part in ip_parts)
 
     # Calculate the subnet address
-    subnet_binary = ip_binary[:int(subnet_mask)] + '0' * (32 - int(subnet_mask))
-    subnet_parts = [subnet_binary[i:i+8] for i in range(0, 32, 8)]
-    subnet_address = '.'.join(str(int(part, 2)) for part in subnet_parts)
+    subnet_binary = ip_binary[:int(subnet_mask)] + '0' * (32 - int(subnet_mask)) #Use subnet mask to only keep the newtork portion of the IP address and turn host part to all 0s
+    subnet_parts = [subnet_binary[i:i+8] for i in range(0, 32, 8)] #Take the string above and split into 4 8-bit binary strings stored in a list
+    subnet_address = '.'.join(str(int(part, 2)) for part in subnet_parts) #Convert back to decimal form and separate by periods
 
     # Calculate the broadcast address
-    broadcast_binary = ip_binary[:int(subnet_mask)] + '1' * (32 - int(subnet_mask))
-    broadcast_parts = [broadcast_binary[i:i+8] for i in range(0, 32, 8)]
-    broadcast_address = '.'.join(str(int(part, 2)) for part in broadcast_parts)
+    broadcast_binary = ip_binary[:int(subnet_mask)] + '1' * (32 - int(subnet_mask)) #Use subnet mask to keep network portion and replace host portion with all 1's
+    broadcast_parts = [broadcast_binary[i:i+8] for i in range(0, 32, 8)] #Divide Broadcase Address String into 4 8-bit parts
+    broadcast_address = '.'.join(str(int(part, 2)) for part in broadcast_parts) #Convert back to strings and decimal form, seprarate by periods 
 
     # Calculate the valid host range
-    network_bits = ip_binary[:int(subnet_mask)]
-    host_bits = '0' * (32 - int(subnet_mask))
-    first_host_binary = network_bits + '0' * (32 - int(subnet_mask) - 1) + '1'
-    last_host_binary = network_bits + '1' * (32 - int(subnet_mask) - 1) + '0'
+    network_bits = ip_binary[:int(subnet_mask)] #slice the network portion of IP
+    first_host_binary = network_bits + '0' * (32 - int(subnet_mask) - 1) + '1' #add 1 to network address
+    last_host_binary = network_bits + '1' * (32 - int(subnet_mask) - 1) + '0' #subtract 1 from broadcast address
 
-    first_host_parts = [first_host_binary[i:i+8] for i in range(0, 32, 8)]
-    last_host_parts = [last_host_binary[i:i+8] for i in range(0, 32, 8)]
+    first_host_parts = [first_host_binary[i:i+8] for i in range(0, 32, 8)] #split into 4 substrings of 8 bits
+    last_host_parts = [last_host_binary[i:i+8] for i in range(0, 32, 8)] #split into 4 substrings of 8 bits
 
-    first_host_address = '.'.join(str(int(part, 2)) for part in first_host_parts)
-    last_host_address = '.'.join(str(int(part, 2)) for part in last_host_parts)
+    first_host_address = '.'.join(str(int(part, 2)) for part in first_host_parts) #join parts by periods and convert to decimal base 2 form
+    last_host_address = '.'.join(str(int(part, 2)) for part in last_host_parts) #join parts by periods and convert to decimal base 2 form
 
     return subnet_address, broadcast_address, first_host_address, last_host_address
 
