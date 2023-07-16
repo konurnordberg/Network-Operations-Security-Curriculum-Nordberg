@@ -1,0 +1,5 @@
+Make sure to run the server code in one terminal first. Copy the key it generates, which is printed to you in the terminal. 
+Next, open the chatApplication file, and edit the value of "key" to have the value which you copied from the server code
+While server is still running, run the chatApplication code in a separate terminal. You should see a new window pop up where you can type.
+To simulate two users communicating, run the chatApplication code in a third terminal window. You can also type in that separate window
+To see the communication occuring live, have the server terminal window open
