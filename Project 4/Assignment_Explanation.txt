@@ -1,1 +1,3 @@
-The instruction for this assinment are in the file Instructions.txt. I use a Linux virtual machine to complete this assignment, via the UTM software for my mac. Screenshots are provided showing proof of each task outlined in the instructions being completed. 
+The instruction for this assinment are in the file Instructions.txt. 
+I use a Linux virtual machine to complete this assignment, via the UTM software for my mac. 
+Screenshots are provided showing proof of each task outlined in the instructions being completed. 
